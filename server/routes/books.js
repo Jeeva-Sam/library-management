@@ -20,7 +20,7 @@ router.post('/add', (req, res) => {
   );
 });
 
-// Get books (All)
+// Get all books (Admin & User)
 router.get('/', (req, res) => {
   db.query('SELECT * FROM books', (err, results) => {
     if (err) {
@@ -35,7 +35,7 @@ router.get('/', (req, res) => {
 router.post('/rent/:bookId', (req, res) => {
   const { bookId } = req.params;
   const { userId } = req.body;
-  const rentedOn = new Date(); // This will get the current PC time
+  const rentedOn = new Date(); // Current PC/server time
 
   console.log('Renting Book:', bookId, 'for User:', userId);
 
@@ -59,7 +59,7 @@ router.post('/rent/:bookId', (req, res) => {
   );
 });
 
-// Update book availability (Admin) – Optional, in case you want to allow admins to mark books as available again
+// Return book (Admin or User)
 router.post('/return/:bookId', (req, res) => {
   const { bookId } = req.params;
 
@@ -77,6 +77,31 @@ router.post('/return/:bookId', (req, res) => {
         return res.status(400).send({ message: 'Book already available or does not exist' });
       }
       res.send({ message: 'Book returned successfully' });
+    }
+  );
+});
+
+// Preload books (for demo/testing only)
+router.post('/preload', (req, res) => {
+  const books = [
+    ['The Great Gatsby', 'F. Scott Fitzgerald'],
+    ['To Kill a Mockingbird', 'Harper Lee'],
+    ['1984', 'George Orwell'],
+    ['Pride and Prejudice', 'Jane Austen'],
+    ['The Catcher in the Rye', 'J.D. Salinger']
+  ];
+
+  const values = books.map(([title, author]) => [title, author]);
+
+  db.query(
+    'INSERT INTO books (title, author) VALUES ?',
+    [values],
+    (err, result) => {
+      if (err) {
+        console.error('Error inserting books:', err);
+        return res.status(500).send({ message: 'Insert failed' });
+      }
+      res.send({ message: 'Preloaded books inserted successfully' });
     }
   );
 });
