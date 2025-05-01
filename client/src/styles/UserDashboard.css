@@ -1,0 +1,50 @@
+.user-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .user-container h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+  }
+  
+  .book-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .book-card h4 {
+    margin-bottom: 10px;
+    color: #444;
+  }
+  
+  .book-card p {
+    margin-bottom: 15px;
+    color: #666;
+  }
+  
+  .book-card button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .book-card button:hover {
+    background-color: #0056b3;
+  }
+  
