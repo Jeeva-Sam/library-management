@@ -33,7 +33,7 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
       <div className="admin-card">
-        <h2> Admin Dashboard</h2>
+        <h2>Admin Dashboard</h2>
 
         <form className="add-book-form" onSubmit={handleAddBook}>
           <h3>Add New Book</h3>
